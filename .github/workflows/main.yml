@@ -38,14 +38,6 @@ jobs:
     needs: ci
     steps:
       - uses: actions/checkout@v1
-      - name: Install
-        uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: install
-      - name: Typescript build
-        uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: build
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Docker build
