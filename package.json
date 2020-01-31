@@ -1,0 +1,38 @@
+{
+  "name": "awesomo-api",
+  "version": "3.2.0",
+  "description": "REST and GraphQl API for AWESOMO 3.x",
+  "main": "index.js",
+  "author": "Dragon1320",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "lint": "eslint . --ext .ts,.jsx",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "test": "cross-env NODE_ENV=test jest --coverage",
+    "test:watch": "cross-env NODE_ENV=test jest --coverage --watchAll",
+    "view:coverage": "serve coverage/lcov-report",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "run:dev": "cross-env NODE_ENV=dev node -r dotenv/config -r source-map-support/register dist",
+    "run:prod": "cross-env NODE_ENV=prod node -r dotenv/config dist",
+    "clean": "rm -rf dist coverage"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.1.1",
+    "@types/node": "^13.5.3",
+    "@types/source-map-support": "^0.5.1",
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
+    "cross-env": "^7.0.0",
+    "eslint": "^6.8.0",
+    "jest": "^25.1.0",
+    "serve": "^11.3.0",
+    "source-map-support": "^0.5.16",
+    "ts-jest": "^25.1.0",
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0"
+  }
+}
