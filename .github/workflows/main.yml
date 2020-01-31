@@ -16,13 +16,21 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Install
-        run: npm install
+        uses: borales/actions-yarn@v2
+        with:
+          cmd: install
       - name: Lint
-        run: npm lint
+        uses: borales/actions-yarn@v2
+        with:
+          cmd: lint
       - name: Test
-        run: npm test
+        uses: borales/actions-yarn@v2
+        with:
+          cmd: test
       - name: Typescript build
-        run: npm build
+        uses: borales/actions-yarn@v2
+        with:
+          cmd: build
   cd:
     runs-on: ubuntu-latest
     needs: ci
@@ -31,7 +39,9 @@ jobs:
       - name: Docker login
         run: docker login -i ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Typescript build
-        run: npm build
+        uses: borales/actions-yarn@v2
+        with:
+          cmd: build
       - name: Docker build
         run: docker build -t app .
       - name: Docker tags
