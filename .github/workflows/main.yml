@@ -17,19 +17,19 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Install
-        uses: borales/actions-yarn@v2
+        uses: borales/actions-yarn@v2.0.0
         with:
           cmd: install
       - name: Lint
-        uses: borales/actions-yarn@v2
+        uses: borales/actions-yarn@v2.0.0
         with:
           cmd: lint
       - name: Test
-        uses: borales/actions-yarn@v2
+        uses: borales/actions-yarn@v2.0.0
         with:
           cmd: test
       - name: Typescript build
-        uses: borales/actions-yarn@v2
+        uses: borales/actions-yarn@v2.0.0
         with:
           cmd: build
   cd:
@@ -41,7 +41,7 @@ jobs:
       - name: Docker login
         run: docker login -i ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Typescript build
-        uses: borales/actions-yarn@v2
+        uses: borales/actions-yarn@v2.0.0
         with:
           cmd: build
       - name: Docker build
