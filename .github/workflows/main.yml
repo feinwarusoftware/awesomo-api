@@ -1,4 +1,4 @@
-name: App CI/CD
+name: AWESOMO-API CI/CD
 
 on:
   push:
@@ -39,18 +39,18 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Docker login
-        run: docker login -i ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Typescript build
         uses: borales/actions-yarn@v2.0.0
         with:
           cmd: build
       - name: Docker build
-        run: docker build -t app .
+        run: docker build -t awesomo-api .
       - name: Docker tags
         run: |
-          docker tag app ${{ secrets.DOCKER_USER }}/app:${{ github.sha }}
-          docker tag app ${{ secrets.DOCKER_USER }}/app:latest
+          docker tag awesomo-api ${{ secrets.DOCKER_USER }}/awesomo-api:${{ github.sha }}
+          docker tag awesomo-api ${{ secrets.DOCKER_USER }}/awesomo-api:latest
       - name: Push
         run: |
-          docker push ${{ secrets.DOCKER_USER }}/app:${{ github.sha }}
-          docker push ${{ secrets.DOCKER_USER }}/app:latest
+          docker push ${{ secrets.DOCKER_USER }}/awesomo-api:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USER }}/awesomo-api:latest
