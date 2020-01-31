@@ -1,44 +1,44 @@
 name: App CI/CD
 
 on:
-	push:
-		branches:
-			- master
-	pull_request:
-		branches:
-			- master
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
-	ci:
-		runs-on: ubuntu-latest
-		container:
-			image: node
-		steps:
-			- uses: actions/checkout@v1
-			- name: Install
-				run: npm install
-			- name: Lint
-				run: npm lint
-			- name: Test
-				run: npm test
-			- name: Typescript build
-				run: npm build
-	cd:
-		runs-on: ubuntu-latest
-		needs: ci
-		steps:
-			- uses: actions/checkout@v1
-			- name: Docker login
-				run: docker login -i ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
-			- name: Typescript build
-				run: npm build
-			- name: Docker build
-				run: docker build -t app .
-			- name: Docker tags
-				run: |
-					docker tag app ${{ secrets.DOCKER_USER }}/app:${{ github.sha }}
-					docker tag app ${{ secrets.DOCKER_USER }}/app:latest
-			- name: Push
-				run: |
-					docker push ${{ secrets.DOCKER_USER }}/app:${{ github.sha }}
-					docker push ${{ secrets.DOCKER_USER }}/app:latest
+  ci:
+    runs-on: ubuntu-latest
+    container:
+      image: node
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install
+        run: npm install
+      - name: Lint
+        run: npm lint
+      - name: Test
+        run: npm test
+      - name: Typescript build
+        run: npm build
+  cd:
+    runs-on: ubuntu-latest
+    needs: ci
+    steps:
+      - uses: actions/checkout@v1
+      - name: Docker login
+        run: docker login -i ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Typescript build
+        run: npm build
+      - name: Docker build
+        run: docker build -t app .
+      - name: Docker tags
+        run: |
+          docker tag app ${{ secrets.DOCKER_USER }}/app:${{ github.sha }}
+          docker tag app ${{ secrets.DOCKER_USER }}/app:latest
+      - name: Push
+        run: |
+          docker push ${{ secrets.DOCKER_USER }}/app:${{ github.sha }}
+          docker push ${{ secrets.DOCKER_USER }}/app:latest
