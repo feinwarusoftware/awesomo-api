@@ -44,9 +44,9 @@ jobs:
         run: docker build -t awesomo-api .
       - name: Docker tags
         run: |
-          docker tag awesomo-api ${{ secrets.DOCKER_USER }}/awesomo-api:${{ github.sha }}
-          docker tag awesomo-api ${{ secrets.DOCKER_USER }}/awesomo-api:latest
+          docker tag awesomo-api feinwaru/awesomo-api:${{ github.sha }}
+          docker tag awesomo-api feinwaru/awesomo-api:latest
       - name: Docker push
         run: |
-          docker push ${{ secrets.DOCKER_USER }}/awesomo-api:${{ github.sha }}
-          docker push ${{ secrets.DOCKER_USER }}/awesomo-api:latest
+          docker push feinwaru/awesomo-api:${{ github.sha }}
+          docker push feinwaru/awesomo-api:latest
