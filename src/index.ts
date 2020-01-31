@@ -1,1 +1,1 @@
-console.log(process.env.ENV_TEST);
+console.log("Hello tweeno!");
